@@ -13,7 +13,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *exerciseLabel;
 @property (weak, nonatomic) IBOutlet UILabel *countdownLabel;
 @property (weak, nonatomic) IBOutlet UIButton *startButton;
-@property (nonatomic, assign) NSInteger *exerciseNumber;
+@property (nonatomic, assign) int exerciseNumber;
+@property (nonatomic, retain) AVAudioPlayer *audioPlayer;
 
 @end
 
@@ -21,6 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self makeAudioPlayer];
     // Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -34,9 +36,21 @@
     self.exerciseNumber = 0;
 }
 
+- (void) makeAudioPlayer {
+    NSLog(@"Make audio player");
+    NSString *path = [[NSBundle mainBundle] pathForResource: @"beep-scratchy" ofType: @"aif"];
+    //    NSLog("Path = \(path)")
+    NSURL *URL = [NSURL fileURLWithPath:path];
+    //    let URL = NSURL.fileURLWithPath(path!)
+    //    NSLog("URL = \(URL)")
+    self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL: URL error: nil];
+    [self.audioPlayer prepareToPlay];
+}
+
 - (void)startTimer {
     if (self.exerciseNumber < 10) {
-        [NSTimer scheduledTimerWithTimeInterval:30.0
+        NSLog(@"Starting Timer.");
+        [NSTimer scheduledTimerWithTimeInterval:10.0
                                          target:self
                                        selector:@selector(timerWentOff)
                                        userInfo:nil
@@ -44,7 +58,15 @@
     }
 }
 
+- (void)playSound {
+    NSLog(@"Play sound");
+
+    [self.audioPlayer play];
+//    NSLog("Play result: \(audioPlayer.play())")
+}
+
 - (void)timerWentOff {
+    [self playSound];
     // Sound goes off
     self.exerciseNumber++;
     [self startTimer];

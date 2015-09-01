@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7F3FCAA91B95615A00656DA8 /* beep-scratchy.aif in Resources */ = {isa = PBXBuildFile; fileRef = 7F3FCAA81B95614F00656DA8 /* beep-scratchy.aif */; };
 		C1F9E0201B954BCF007176D5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F9E01F1B954BCF007176D5 /* main.m */; };
 		C1F9E0231B954BCF007176D5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F9E0221B954BCF007176D5 /* AppDelegate.m */; };
 		C1F9E0261B954BCF007176D5 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F9E0251B954BCF007176D5 /* ViewController.m */; };
@@ -27,6 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7F3FCAA81B95614F00656DA8 /* beep-scratchy.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-scratchy.aif"; sourceTree = "<group>"; };
 		C1F9E01A1B954BCF007176D5 /* Workout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Workout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1F9E01E1B954BCF007176D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C1F9E01F1B954BCF007176D5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 		C1F9E01D1B954BCF007176D5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				7F3FCAA81B95614F00656DA8 /* beep-scratchy.aif */,
 				C1F9E01E1B954BCF007176D5 /* Info.plist */,
 				C1F9E01F1B954BCF007176D5 /* main.m */,
 			);
@@ -199,6 +202,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F3FCAA91B95615A00656DA8 /* beep-scratchy.aif in Resources */,
 				C1F9E0291B954BCF007176D5 /* Main.storyboard in Resources */,
 				C1F9E02E1B954BCF007176D5 /* LaunchScreen.xib in Resources */,
 				C1F9E02B1B954BCF007176D5 /* Images.xcassets in Resources */,
@@ -416,6 +420,7 @@
 				C1F9E03F1B954BCF007176D5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C1F9E0401B954BCF007176D5 /* Build configuration list for PBXNativeTarget "WorkoutTests" */ = {
 			isa = XCConfigurationList;
@@ -424,6 +429,7 @@
 				C1F9E0421B954BCF007176D5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
