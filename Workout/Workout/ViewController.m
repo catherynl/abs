@@ -15,18 +15,26 @@
 @property (weak, nonatomic) IBOutlet UILabel *exerciseLabel;
 @property (weak, nonatomic) IBOutlet UILabel *countdownLabel;
 @property (weak, nonatomic) IBOutlet UIButton *startButton;
-@property (nonatomic, assign) int exerciseNumber;
 @property (nonatomic, retain) AVAudioPlayer *audioPlayer;
 @property (nonatomic, retain) Timer *timer;
+@property (weak, nonatomic) IBOutlet UIButton *stopButton;
+@property (nonatomic, assign) int exerciseNumber;
+@property (nonatomic, copy) NSArray *exerciseArray;
+
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.startButton.hidden = NO;
+    self.stopButton.hidden = YES;
+    self.exerciseLabel.text = @"Ready to exercise?";
+    // Set up exercise list
+    NSArray *array = @[@"Crunches", @"In-and-outs", @"Side crunches L", @"Side crunches R", @"Mini Vs", @"Bicycles", @"Big Vs", @"Sitting", @"Plank", @"Side plank L", @"Side plank R"];
+    self.exerciseArray = array;
     [self makeAudioPlayer];
     [self makeTimer];
-    // Do any additional setup after loading the view, typically from a nib.
 }
 
 - (void)didReceiveMemoryWarning {
@@ -34,24 +42,22 @@
     // Dispose of any resources that can be recreated.
 }
 
+// MARK: Starting & stopping workout
+
 - (IBAction)startButtonPressed:(id)sender {
     [self startTimer];
+    self.startButton.hidden = YES;
+    self.stopButton.hidden = NO;
+
 }
 
 - (IBAction)stopButtonPressed:(id)sender {
+    self.stopButton.hidden = YES;
+    self.startButton.hidden = NO;
     [self stopTimer];
 }
 
-- (void)makeAudioPlayer {
-    NSLog(@"Make audio player");
-    NSString *path = [[NSBundle mainBundle] pathForResource: @"beep-scratchy" ofType: @"aif"];
-    //    NSLog("Path = \(path)")
-    NSURL *URL = [NSURL fileURLWithPath:path];
-    //    let URL = NSURL.fileURLWithPath(path!)
-    //    NSLog("URL = \(URL)")
-    self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL: URL error: nil];
-    [self.audioPlayer prepareToPlay];
-}
+// MARK: Timer
 
 - (void)makeTimer {
     NSLog(@"Make timer");
@@ -63,6 +69,7 @@
 }
 
 - (void)startTimer {
+    self.exerciseLabel.text = self.exerciseArray[self.exerciseNumber];
     [_timer start];
 }
 
@@ -70,13 +77,8 @@
     [_timer pause];
 }
 
-- (void)playSound {
-    NSLog(@"Play sound");
-
-    [self.audioPlayer play];
-//    NSLog("Play result: \(audioPlayer.play())")
+- (void)endWorkout {
 }
-
 
 
 - (void) timerDidUpdate {
@@ -91,10 +93,31 @@
 - (void)timerDidFire {
     NSLog(@"Timer fire");
     [self playSound];
-    // Sound goes off
     self.exerciseNumber++;
     [self resetTimer];
     [self startTimer];
+    if (self.exerciseNumber < 11) {
+        [self startTimer];
+    } else {
+        [self endWorkout];
+    }
+}
+
+// MARK: Sound
+
+- (void) makeAudioPlayer {
+    NSLog(@"Make audio player");
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"beep-scratchy" ofType:@"aif"];
+    NSURL *URL = [NSURL fileURLWithPath:path];
+    self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:URL error:nil];
+    [self.audioPlayer prepareToPlay];
+}
+
+- (void)playSound {
+    NSLog(@"Play sound");
+    [self.audioPlayer play];
+    [self.audioPlayer prepareToPlay];
+    
 }
 
 @end

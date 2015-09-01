@@ -2,6 +2,8 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -17,48 +19,65 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="exerciseLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="11z-IT-Xsw">
-                                <rect key="frame" x="247" y="248" width="107" height="21"/>
+                                <rect key="frame" x="0.0" y="248" width="600" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="107" id="v6h-cm-xpl"/>
+                                    <constraint firstAttribute="width" constant="600" id="v6h-cm-xpl"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="countdownLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9OY-cT-FLg">
-                                <rect key="frame" x="236" y="289" width="128" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ChV-Zi-dbh">
-                                <rect key="frame" x="245" y="331" width="109" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="qDu-WO-lxC"/>
-                                    <constraint firstAttribute="width" constant="109" id="ta8-Tv-2of"/>
-                                </constraints>
-                                <state key="normal" title="startButton">
+                                <rect key="frame" x="0.0" y="331" width="600" height="30"/>
+                                <state key="normal" title="START">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="startButtonPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="bAr-ZH-Tgw"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="countdownLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9OY-cT-FLg">
+                                <rect key="frame" x="0.0" y="289" width="600" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="nH1-Tl-KNR"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cuF-aj-ewE">
+                                <rect key="frame" x="0.0" y="356" width="600" height="30"/>
+                                <state key="normal" title="STOP">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="startButtonPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="qaN-C0-T5N"/>
+                                    <action selector="stopButtonPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="omw-j3-Z5m"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="cuF-aj-ewE" firstAttribute="top" secondItem="ChV-Zi-dbh" secondAttribute="top" constant="25" id="8Le-10-A1W"/>
+                            <constraint firstItem="ChV-Zi-dbh" firstAttribute="top" secondItem="9OY-cT-FLg" secondAttribute="bottom" constant="21" id="AsP-dY-VA9"/>
+                            <constraint firstAttribute="centerY" secondItem="9OY-cT-FLg" secondAttribute="centerY" id="Hj3-gE-EjK"/>
                             <constraint firstItem="ChV-Zi-dbh" firstAttribute="trailing" secondItem="11z-IT-Xsw" secondAttribute="trailing" id="K00-aQ-TE3"/>
-                            <constraint firstItem="9OY-cT-FLg" firstAttribute="top" secondItem="11z-IT-Xsw" secondAttribute="bottom" constant="21" id="SsU-cp-f4R"/>
-                            <constraint firstAttribute="centerX" secondItem="9OY-cT-FLg" secondAttribute="centerX" id="X1S-Eb-yLp"/>
+                            <constraint firstItem="cuF-aj-ewE" firstAttribute="baseline" secondItem="ChV-Zi-dbh" secondAttribute="firstBaseline" constant="25" id="b6S-l7-EWF"/>
+                            <constraint firstItem="9OY-cT-FLg" firstAttribute="top" secondItem="11z-IT-Xsw" secondAttribute="bottom" constant="20" id="cTX-KS-UhO"/>
+                            <constraint firstItem="9OY-cT-FLg" firstAttribute="leading" secondItem="11z-IT-Xsw" secondAttribute="leading" id="fK8-Sc-2E8"/>
+                            <constraint firstItem="9OY-cT-FLg" firstAttribute="leading" secondItem="ChV-Zi-dbh" secondAttribute="leading" id="gcw-Os-p5N"/>
+                            <constraint firstItem="cuF-aj-ewE" firstAttribute="firstBaseline" secondItem="ChV-Zi-dbh" secondAttribute="baseline" constant="25" id="h3U-QP-X8W"/>
+                            <constraint firstItem="9OY-cT-FLg" firstAttribute="trailing" secondItem="11z-IT-Xsw" secondAttribute="trailing" id="hh2-ti-Bx4"/>
                             <constraint firstAttribute="centerX" secondItem="11z-IT-Xsw" secondAttribute="centerX" id="qPm-jf-oYk"/>
-                            <constraint firstItem="ChV-Zi-dbh" firstAttribute="top" secondItem="9OY-cT-FLg" secondAttribute="bottom" constant="21" id="yKH-6U-b30"/>
-                            <constraint firstAttribute="centerY" secondItem="9OY-cT-FLg" secondAttribute="centerY" id="zEM-Gw-nuI"/>
+                            <constraint firstItem="cuF-aj-ewE" firstAttribute="trailing" secondItem="ChV-Zi-dbh" secondAttribute="trailing" id="xVo-3g-fll"/>
+                            <constraint firstItem="cuF-aj-ewE" firstAttribute="leading" secondItem="ChV-Zi-dbh" secondAttribute="leading" id="zMd-fW-6Z1"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="countdownLabel" destination="9OY-cT-FLg" id="zrg-Xh-YIN"/>
                         <outlet property="exerciseLabel" destination="11z-IT-Xsw" id="lcZ-JK-PUP"/>
                         <outlet property="startButton" destination="ChV-Zi-dbh" id="OxW-tz-5OT"/>
+                        <outlet property="stopButton" destination="cuF-aj-ewE" id="iAj-hY-Zag"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
