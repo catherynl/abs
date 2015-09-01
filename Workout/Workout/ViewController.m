@@ -8,6 +8,8 @@
 
 #import "ViewController.h"
 
+#define default_time 10.0
+
 @interface ViewController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *exerciseLabel;
@@ -15,7 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *startButton;
 @property (nonatomic, assign) int exerciseNumber;
 @property (nonatomic, retain) AVAudioPlayer *audioPlayer;
-
+@property (nonatomic, retain) Timer *timer;
 @end
 
 @implementation ViewController
@@ -23,6 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self makeAudioPlayer];
+    [self makeTimer];
     // Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -33,10 +36,13 @@
 
 - (IBAction)startButtonPressed:(id)sender {
     [self startTimer];
-    self.exerciseNumber = 0;
 }
 
-- (void) makeAudioPlayer {
+- (IBAction)stopButtonPressed:(id)sender {
+    [self stopTimer];
+}
+
+- (void)makeAudioPlayer {
     NSLog(@"Make audio player");
     NSString *path = [[NSBundle mainBundle] pathForResource: @"beep-scratchy" ofType: @"aif"];
     //    NSLog("Path = \(path)")
@@ -47,15 +53,21 @@
     [self.audioPlayer prepareToPlay];
 }
 
+- (void)makeTimer {
+    NSLog(@"Make timer");
+    _timer = [[Timer alloc] initWithTime:default_time delegate:self];
+}
+
+- (void)resetTimer {
+    [_timer setTime:default_time];
+}
+
 - (void)startTimer {
-    if (self.exerciseNumber < 10) {
-        NSLog(@"Starting Timer.");
-        [NSTimer scheduledTimerWithTimeInterval:10.0
-                                         target:self
-                                       selector:@selector(timerWentOff)
-                                       userInfo:nil
-                                        repeats:NO];
-    }
+    [_timer start];
+}
+
+- (void)stopTimer {
+    [_timer pause];
 }
 
 - (void)playSound {
@@ -65,10 +77,23 @@
 //    NSLog("Play result: \(audioPlayer.play())")
 }
 
-- (void)timerWentOff {
+
+
+- (void) timerDidUpdate {
+//    NSLog(@"Timer update");
+    NSTimeInterval interval = [_timer getTime];
+    int sec = (int)interval;
+    int millis = (int) ((interval - sec) * 1000);
+    NSString* str = [[NSString alloc] initWithFormat:@"%02d.%03d", sec, millis];
+    _countdownLabel.text = str;
+}
+
+- (void)timerDidFire {
+    NSLog(@"Timer fire");
     [self playSound];
     // Sound goes off
     self.exerciseNumber++;
+    [self resetTimer];
     [self startTimer];
 }
 

@@ -6,11 +6,12 @@
 //  Copyright (c) 2015 Catheryn Li. All rights reserved.
 //
 
+#import "Timer.h"
+
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVAudioPlayer.h>
 
-@interface ViewController : UIViewController
-
+@interface ViewController : UIViewController <TimerDelegate>
 
 @end
 
